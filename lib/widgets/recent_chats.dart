@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger_app/models/message_model.dart';
+import 'package:messenger_app/screens/chat_message_screen.dart';
 
 class RecentChart extends StatefulWidget {
   @override
@@ -26,7 +27,20 @@ class _RecentChartState extends State<RecentChart> {
               itemCount: chats.length,
               itemBuilder: (context, int count) {
                 // final chatIsFromMe = chats[count].sender ==
-                return messageRow(context, count);
+                return GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (BuildContext context){
+                                  return ChartScreen(user:chats[count].sender);
+                                }
+                              )
+                            );
+                            // print("fucking tapped");
+                          },
+                          child: messageRow(context, count)
+                      );
               }),
         ),
       ),

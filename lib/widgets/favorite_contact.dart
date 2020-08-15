@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:messenger_app/models/message_model.dart' show favContacts;
+import 'package:messenger_app/screens/chat_message_screen.dart';
 
 class FavouriteContact extends StatefulWidget {
   @override
@@ -36,18 +37,31 @@ class _FavouriteContactState extends State<FavouriteContact> {
                     scrollDirection: Axis.horizontal,
                     itemCount: favContacts.length,
                     itemBuilder: ( BuildContext context, int count){
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(radius: 29.0,backgroundImage: AssetImage(favContacts[count].imageUrl)),
-                            SizedBox(height:6.0),
-                            Text(favContacts[count].name, style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w600
-                            ),),
-                          ],
+                      return GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (BuildContext context){
+                                  return ChartScreen(user:favContacts[count]);
+                                }
+                              )
+                            );
+                            // print("fucking tapped");
+                          },
+                          child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(radius: 29.0,backgroundImage: AssetImage(favContacts[count].imageUrl)),
+                              SizedBox(height:6.0),
+                              Text(favContacts[count].name, style: TextStyle(
+                                color: Colors.blueGrey,
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w600
+                              ),),
+                            ],
+                          ),
                         ),
                       );
                     }

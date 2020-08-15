@@ -17,7 +17,8 @@ Widget topBar(){
               icon: Icon(Icons.search),
               iconSize: 30.0,
               color: Colors.white,
-              onPressed: () {}),
+              onPressed: () {}
+              ),
         ],
       );
 }
